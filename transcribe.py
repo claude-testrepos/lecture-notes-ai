@@ -7,7 +7,12 @@ def transcribe(audio: Path, model_size="small", device="auto"):
     model = WhisperModel(model_size, device=device, compute_type="int8")
     segments, info = model.transcribe(str(audio), vad_filter=True, beam_size=5)
     print(f"detected language {info.language} ({info.language_probability:.0%})")
-    return [(s.start, s.end, s.text.strip()) for s in segments]
+    out = []
+    for s in segments:  # segments is a generator, transcription happens here
+        out.append((s.start, s.end, s.text.strip()))
+        print(f"\r  {min(s.end / info.duration, 1):6.1%}", end="", flush=True)
+    print()
+    return out
 
 
 def to_srt(segments) -> str:
