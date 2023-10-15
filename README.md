@@ -1,6 +1,6 @@
 # lecture2notes
 
-Turns recorded lecutres into a transcript and Markdown study notes. Uses faster-whisper locally for speech-to-text and GPT-4 for summarizing.
+Turns recorded lectures into a transcript and Markdown study notes. Uses faster-whisper locally for speech-to-text and GPT-4 for summarizing.
 
 ## Requirements
 
